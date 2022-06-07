@@ -41,7 +41,7 @@ setup(
     'sentencepiece',
     'torch>=1.6',
     'torchvision',
-    'transformers',
+    'transformers>=4.19.2',
     'tqdm'
   ],
   classifiers=[
