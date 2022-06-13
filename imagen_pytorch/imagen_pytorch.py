@@ -2094,6 +2094,8 @@ class Imagen(nn.Module):
                     use_tqdm = use_tqdm
                 )
 
+                torch.clamp(img, 0.0, 1.0)
+
                 outputs.append(img)
 
             if exists(stop_at_unet_number) and stop_at_unet_number == unet_number:
@@ -2231,7 +2233,7 @@ class Imagen(nn.Module):
         times = noise_scheduler.sample_random_times(b, device = device)
 
         if exists(texts) and not exists(text_embeds) and not self.unconditional:
-            assert len(texts) == len(images), 'number of text captions does not match up with the number of images given'
+            assert len(texts) == len(image), 'number of text captions does not match up with the number of images given'
 
             with autocast(enabled = False):
                 text_embeds, text_masks = self.encode_text(texts, return_attn_mask = True)
