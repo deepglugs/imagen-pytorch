@@ -2094,7 +2094,7 @@ class Imagen(nn.Module):
                     use_tqdm = use_tqdm
                 )
 
-                img = torch.clamp(img, 0.0, 1.0)
+                # img = torch.clamp(img, 0.0, 1.0)
 
                 outputs.append(img)
 
