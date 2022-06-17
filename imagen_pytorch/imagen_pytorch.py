@@ -2037,7 +2037,8 @@ class Imagen(nn.Module):
                 text_embeds, text_masks = self.encode_text(texts, return_attn_mask = True)
 
             text_embeds, text_masks = map(lambda t: t.to(device), (text_embeds, text_masks))
-            print(text_embeds.shape)
+
+            # shape=(7, 1024, dtype=torch.float32), text_masks=(7, dtype=torch.bool)
 
         if not self.unconditional:
             text_masks = default(text_masks, lambda: torch.any(text_embeds != 0., dim = -1))
