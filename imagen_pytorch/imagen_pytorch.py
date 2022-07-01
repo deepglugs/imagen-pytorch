@@ -1422,7 +1422,7 @@ class Unet(nn.Module):
         assert not (self.has_cond_image ^ exists(cond_images)), 'you either requested to condition on an image on the unet, but the conditioning image is not supplied, or vice versa'
 
         if exists(cond_images):
-            assert cond_images.shape[1] == self.cond_images_channels, 'the number of channels on the conditioning image you are passing in does not match what you specified on initialiation of the unet'
+            assert cond_images.shape[1] == self.cond_images_channels, f'the number of channels on the conditioning image {cond_images.shape[1]} you are passing in does not match what you specified on initialiation of the unet'
             cond_images = resize_image_to(cond_images, x.shape[-1])
             x = torch.cat((cond_images, x), dim = 1)
 
